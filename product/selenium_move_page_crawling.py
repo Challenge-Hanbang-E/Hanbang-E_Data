@@ -1,19 +1,13 @@
-# 카테고리 순서 main > sub > detail > taget
-
-from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-from webdriver_manager.chrome import ChromeDriverManager
-
 from coupang_driver_setting import driver_connection
-
 from bs4_crawling import bs4_crawling
-
+from db_connect import conn
 
 driver = driver_connection()
 
+# 카테고리 순서 main > sub > detail > taget
 
 def next_page():
     for page_button_num in range(first_page_button, last_page_button + 1):
@@ -83,3 +77,5 @@ for i in range(first_subCategory, last_subCategory + 1):
                 break
 
             next_page()
+
+conn.close()
