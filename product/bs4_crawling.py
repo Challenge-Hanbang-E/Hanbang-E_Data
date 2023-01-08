@@ -16,14 +16,13 @@ def bs4_crawling(driver):
         print(count)
         e = element.select_one('a.baby-product-link > dl.baby-product-wrap')
         img = "https://" + e.select_one(' dt.image > img')['src']
-        title = e.select_one('dd > div.name').text
-        price = e.select_one('dd > div > div > div > em > strong').text
-        # print("제조사: " + re.split(' |,', name.lstrip())[0])
+        title = e.select_one('dd > div.name').text.strip()
+        price = e.select_one('dd > div > div > div > em > strong').text.replace(",", "")
         print(img)
         print(title)
         print(price)
-        query = "INSERT INTO product(TITLE, PRICE, IMG, STOCK, SALES, ON_SALE) VALUES (%s, %s, %s, 100, 0, TRUE)"
-        values = (title, int(price.replace(",", "")), img)
+        query = "INSERT INTO product(NAME, PRICE, IMG, STOCK, SALES, ON_SALE) VALUES (%s, %s, %s, 100, 0, True)"
+        values = (title, int(price), img)
         cur.execute(query, values)
         conn.commit()
 
