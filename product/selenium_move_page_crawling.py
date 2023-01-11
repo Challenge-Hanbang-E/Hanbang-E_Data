@@ -71,7 +71,7 @@ for i in range(first_subCategory, last_subCategory + 1):
                 targetCategory = f'//*[@id="gnbAnalytics"]/ul[1]/li[{i}]/div/div/ul/li[{j}]/div/ul/li[{k}]/a'
                 actions.click(driver.find_element(By.XPATH, targetCategory))
                 actions.perform()
-                driver.implicitly_wait(10)
+                driver.implicitly_wait(20)
 
             except:
                 break
