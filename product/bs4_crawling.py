@@ -5,9 +5,11 @@ from db_connect import cur, conn
 
 file_path = 'hanbange.json'
 
-with open(file_path, "r") as json_file:
-    data = json.load(json_file)
-
+try:
+    with open(file_path, "r") as json_file:
+        data = json.load(json_file)
+except:
+    data = {"product": []}
 
 def bs4_crawling(driver):
     html = driver.page_source
