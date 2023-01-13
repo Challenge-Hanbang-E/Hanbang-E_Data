@@ -14,8 +14,8 @@ variation_value = 30  # 데이터를 더 생성하려면 여기를 변동해주�
 
 while i <= variation_value:
     while True:
-        email_file_path = f'data/email/email_{i}.json'
-        member_file_path = f'data/member/member_{i}.json'
+        email_file_path = f'./data/email/email_{i}.json'
+        member_file_path = f'./data/members/member_{i}.json'
 
         try:
             with open(email_file_path, "r") as email_file:

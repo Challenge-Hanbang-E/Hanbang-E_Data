@@ -8,7 +8,7 @@ hundred_thousand = []
 
 while True:
     try:
-        member_file_path = f'member_{i}.json'
+        member_file_path = f'./data/members/member_{i}.json'
 
         with open(member_file_path, "r") as member_file:
             values_data = json.load(member_file)
@@ -28,3 +28,5 @@ while True:
     except:
         print(f"member_{i}.json 도중 에러")
         break
+
+conn.close()
