@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from coupang_driver_setting import driver_connection
@@ -9,7 +9,7 @@ driver = driver_connection()
 
 # 카테고리 순서 main > sub > detail > taget
 
-def next_page():
+def next_page(i, j, k):
     for page_button_num in range(first_page_button, last_page_button + 1):
         if page_button_num == 12:
             button_num = page_button_num
@@ -23,11 +23,11 @@ def next_page():
             try:
                 page = driver.find_element(By.XPATH, page_num)
                 driver.execute_script("arguments[0].click();", page)
-                driver.implicitly_wait(10)
+                driver.implicitly_wait(40)
             except:
                 break
 
-        bs4_crawling(driver)
+        bs4_crawling(driver, i, j, k)
 
 
 first_subCategory = 1
@@ -71,11 +71,9 @@ for i in range(first_subCategory, last_subCategory + 1):
                 targetCategory = f'//*[@id="gnbAnalytics"]/ul[1]/li[{i}]/div/div/ul/li[{j}]/div/ul/li[{k}]/a'
                 actions.click(driver.find_element(By.XPATH, targetCategory))
                 actions.perform()
-                driver.implicitly_wait(20)
+                driver.implicitly_wait(40)
 
             except:
                 break
 
-            next_page()
-
-conn.close()
+            next_page(i, j, k)

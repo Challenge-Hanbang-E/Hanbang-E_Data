@@ -6,6 +6,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 def driver_connection():
     options = webdriver.ChromeOptions()
     # options.add_argument("headless")  # 화면 사용 X
+    options.add_argument('window-size=1920x1080')
+    options.add_argument('--start-fullscreen')
     options.add_argument("--incognito")  # 시크릿 모드(쿠키 X)
     options.add_argument("--disable-popup-blocking")  # 광고 팝업 노출 X
 
@@ -21,8 +23,7 @@ def driver_connection():
     })
 
     url = "https://www.coupang.com"
-
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(40)
     driver.get(url)
 
     return driver
