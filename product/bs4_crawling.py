@@ -2,6 +2,8 @@ import json
 import random
 from bs4 import BeautifulSoup
 
+from logger_config import logger
+
 
 def bs4_crawling(driver, i, j, k):
     file_path = f'./products/product_{i}_{j}.json'
@@ -33,7 +35,7 @@ def bs4_crawling(driver, i, j, k):
                 data['product'].append(json_values)
 
             except:
-                print(f"실패: {i}, {j}, {k}, {count}")
+                logger.info(f"실패: {i}, {j}, {k}, {count}")
 
 
         json.dump(data, outfile, indent=1, ensure_ascii=False)

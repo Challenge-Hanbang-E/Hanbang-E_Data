@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 from coupang_driver_setting import driver_connection
 from bs4_crawling import bs4_crawling
-from db_connect import conn
+from logger_config import logger
 
 driver = driver_connection()
 
@@ -51,7 +51,7 @@ for i in range(first_subCategory, last_subCategory + 1):
             break
 
         for k in range(first_targetCategory, last_targetCategory + 1):
-            print(f'//*[@id="gnbAnalytics"]/ul[1]/li[{i}]/a')
+            logger.info(f'//*[@id="gnbAnalytics"]/ul[1]/li[{i}]/a')
             mainCategory = driver.find_element(By.XPATH, '//*[@id="header"]/div/a')
             subCategory = driver.find_element(By.XPATH, f'//*[@id="gnbAnalytics"]/ul[1]/li[{i}]/a')
 
@@ -69,11 +69,13 @@ for i in range(first_subCategory, last_subCategory + 1):
 
             try:
                 targetCategory = f'//*[@id="gnbAnalytics"]/ul[1]/li[{i}]/div/div/ul/li[{j}]/div/ul/li[{k}]/a'
+                logger.info(f"category log = {i}, {j}, {k}")
                 actions.click(driver.find_element(By.XPATH, targetCategory))
                 actions.perform()
                 driver.implicitly_wait(40)
 
             except:
+                logger.info(f"categroy log = {i}, {j}, {k} 실패")
                 break
 
             next_page(i, j, k)

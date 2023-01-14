@@ -1,6 +1,7 @@
 import json
 
 from db_connect import cur, conn
+from logger_config import logger
 
 i = 1
 
@@ -26,7 +27,7 @@ while True:
 
         i += 1
     except:
-        print(f"member_{i}.json 도중 에러")
+        logger.info(f"member_{i}.json 도중 에러")
         break
 
 conn.close()
