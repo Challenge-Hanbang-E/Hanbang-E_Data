@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 def bs4_crawling(driver, i, j, k):
-    file_path = f'./product/product_{i}_{j}.json'
+    file_path = f'./products/product_{i}_{j}.json'
 
     try:
         with open(file_path, "r") as json_file:
@@ -26,7 +26,7 @@ def bs4_crawling(driver, i, j, k):
             try:
                 e = element.select_one('a.baby-product-link > dl.baby-product-wrap')
                 img = "https://" + e.select_one(' dt.image > img')['src']
-                product_name = e.select_one('dd > div.name').text.strip()
+                product_name = e.select_one('dd > div.name').text.strip().replace('"', "").replace("'", "")
                 price = e.select_one('dd > div > div > div > em > strong').text.replace(",", "")
 
                 json_values = f"('{product_name}', {price}, '{img}', {1000000}, {sales}, {True})"
