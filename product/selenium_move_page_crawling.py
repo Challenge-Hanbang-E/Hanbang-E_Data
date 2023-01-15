@@ -17,7 +17,6 @@ def next_page(i, j, k):
             continue
         else:
             button_num = page_button_num % 12
-
         if button_num != 2:
             page_num = f'//*[@id="product-list-paging"]/div/a[{button_num}]'
             try:
@@ -27,7 +26,7 @@ def next_page(i, j, k):
             except:
                 break
 
-        bs4_crawling(driver, i, j, k)
+        bs4_crawling(driver, i, j, k, page_button_num)
 
 
 first_subCategory = 1
