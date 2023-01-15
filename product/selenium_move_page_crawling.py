@@ -75,6 +75,6 @@ for i in range(first_subCategory, last_subCategory + 1):
 
             except:
                 logger.info(f"categroy log = {i}, {j}, {k} 실패")
-                break
+                continue
 
             next_page(i, j, k)
