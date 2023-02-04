@@ -1,7 +1,7 @@
 import json
 
-from db_connect import cur, conn
-from logger_config import logger
+from config.db_connect import cur, conn
+from config.logger_config import logger
 
 i = 1
 

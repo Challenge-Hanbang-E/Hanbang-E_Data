@@ -1,16 +1,19 @@
 import json
-import random
 from datetime import datetime
 
 from bs4 import BeautifulSoup
 
-from logger_config import logger
+from config.logger_config import logger
 
 
 def bs4_crawling(driver, i, j, k, page):
 
-    today = datetime.today().strftime("%Y-%m-%d")
-    file_path = f'./new_products/{today}.json'
+    if k == 0:
+        today = datetime.today().strftime("%Y-%m-%d")
+        file_path = f'../new_products_data/{today}.json'
+    else:
+        file_path = f'../products_data/product_{i}_{j}.json'
+
     try:
         with open(file_path, "r") as json_file:
             data = json.load(json_file)

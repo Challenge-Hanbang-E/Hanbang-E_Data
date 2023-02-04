@@ -1,11 +1,11 @@
 import time
 
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
-from coupang_driver_setting import driver_connection
-from bs4_crawling import bs4_crawling
-from logger_config import logger
+from config.logger_config import logger
+from product.crawling.bs4_crawling import bs4_crawling
+from product.crawling.setting.coupang_driver_setting import driver_connection
 
 driver = driver_connection()
 
@@ -49,7 +49,6 @@ for i in range(first_subCategory, last_subCategory + 1):
         except:
             logger.info(f"categroy log = {i}, {j} 실패")
             break
-
 
         bs4_crawling(driver, i, j, 0, 0)
 
