@@ -1,13 +1,15 @@
+import time
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
-from coupang_driver_setting import driver_connection
-from bs4_crawling import bs4_crawling
-from logger_config import logger
-
-driver = driver_connection()
+from config.logger_config import logger
+from product.crawling.bs4_crawling import bs4_crawling
+from product.crawling.setting.coupang_driver_setting import driver_connection
 
 # 카테고리 순서 main > sub > detail > taget
+
+driver = driver_connection()
 
 def next_page(i, j, k):
     for page_button_num in range(first_page_button, last_page_button + 1):
@@ -75,6 +77,6 @@ for i in range(first_subCategory, last_subCategory + 1):
 
             except:
                 logger.info(f"categroy log = {i}, {j}, {k} 실패")
-                continue
+                break
 
             next_page(i, j, k)

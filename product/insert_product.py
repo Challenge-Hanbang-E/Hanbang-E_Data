@@ -1,14 +1,14 @@
 import json
 
-from db_connect import cur, conn
-from logger_config import logger
+from config.db_connect import cur, conn
+from config.logger_config import logger
 
 i = 1
 j = 1
 
 while i <= 15:
     try:
-        product_file_path = f'./data/datas/product_{i}_{j}.json'
+        product_file_path = f'./products_data/product_{i}_{j}.json'
         with open(product_file_path, "r") as product_file:
             values_data = json.load(product_file)
             products = values_data['product']
