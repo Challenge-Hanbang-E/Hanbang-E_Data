@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from config.logger_config import logger
 from product.crawling.bs4_crawling import bs4_crawling
 from product.crawling.setting.coupang_driver_setting import driver_connection
+from slack_msg import send_slack_msg
+
 
 def crawl_new():
     driver = driver_connection()
@@ -36,7 +38,9 @@ def crawl_new():
                 actions.perform()
                 driver.implicitly_wait(10)
 
-            except:
+            except Exception as e:
+                print(e)
+                send_slack_msg('크롤링 에러 발생', f"categroy log = {i}, {j}이상 부턴 없는 카테고리")
                 logger.info(f"categroy log = {i}, {j}이상 부턴 없는 카테고리")
                 break
 
@@ -48,6 +52,7 @@ def crawl_new():
                 time.sleep(2)
 
             except:
+                send_slack_msg('크롤링 에러 발생', f"categroy log = {i}, {j} 실패")
                 logger.info(f"categroy log = {i}, {j} 실패")
                 break
 
