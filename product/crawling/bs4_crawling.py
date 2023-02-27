@@ -10,9 +10,9 @@ def bs4_crawling(driver, i, j, k, page):
 
     if k == 0:
         today = datetime.today().strftime("%Y-%m-%d")
-        file_path = f'product/new_products_data/{today}.json'
+        file_path = f'../new_products_data/{today}.json'
     else:
-        file_path = f'product/products_data/product_{i}_{j}.json'
+        file_path = f'../products_data/product_{i}_{j}.json'
 
     try:
         with open(file_path, "r") as json_file:
