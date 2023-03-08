@@ -5,18 +5,17 @@ import datetime
 from product.crawling.new_product_crawling import crawl_new
 from product.insert_product import insert_data
 from slack_msg import send_slack_msg
-
+from config.logger_config import logger
 
 def job():
     send_slack_msg('크롤링 시작', str(datetime.datetime.now()))
-    print(datetime.datetime.now())
-    print("new Crawl")
+    logger.info("new Crawl", datetime.datetime.now())
     crawl_new()
     send_slack_msg('크롤링 완료', str(datetime.datetime.now()))
-    print("insert new data")
+    logger.info("insert new data")
     send_slack_msg('데이터 삽입', str(datetime.datetime.now()))
     insert_data()
-    print("insert complete")
+    logger.info("insert complete")
     send_slack_msg('데이터 삽입 완료', str(datetime.datetime.now()))
 
 
